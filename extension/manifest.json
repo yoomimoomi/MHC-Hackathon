@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "MHC Extension",
+  "version": "1.0.0",
+  "description": "Chrome extension with a popup",
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "MHC Extension"
+  },
+  "permissions": []
+}
