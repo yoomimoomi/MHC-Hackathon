@@ -1,0 +1,11 @@
+.mhc-maps-inject {
+  padding: 6px 8px;
+  margin-top: 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #1a1a1a;
+  background: #e8f0fe;
+  border: 1px solid #1a73e8;
+}

@@ -7,5 +7,16 @@
     "default_popup": "popup/popup.html",
     "default_title": "MHC Extension"
   },
-  "permissions": []
+  "permissions": [],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.google.com/maps/*",
+        "https://maps.google.com/*"
+      ],
+      "css": ["content/maps-listings.css"],
+      "js": ["content/maps-listings.js"],
+      "run_at": "document_idle"
+    }
+  ]
 }
