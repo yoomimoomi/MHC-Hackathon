@@ -1,11 +1,36 @@
+/* NYC-style food inspection badge — top-right of the place title container (.lMbq3e) */
 .mhc-maps-inject {
-  padding: 6px 8px;
-  margin-top: 8px;
-  border-radius: 6px;
-  font-size: 13px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  padding: 6px 8px 8px;
+  border-radius: 8px;
+  border: 2px solid #e65100;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  pointer-events: none;
+}
+
+.mhc-maps-inject__region {
+  font-size: 10px;
   font-weight: 600;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  color: #1a1a1a;
-  background: #e8f0fe;
-  border: 1px solid #1a73e8;
+  letter-spacing: 0.06em;
+  color: #ff9800;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.mhc-maps-inject__grade {
+  margin-top: 2px;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+  color: #e65100;
 }
