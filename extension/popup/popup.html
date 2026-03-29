@@ -1,17 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Popup</title>
-    <link rel="stylesheet" href="popup.css" />
-  </head>
-  <body>
-    <main class="popup">
-      <h1 class="popup__title">Hello</h1>
-      <p class="popup__hint">Edit <code>popup/</code> to build your UI.</p>
-      <button type="button" id="action" class="popup__button">Click me</button>
-    </main>
-    <script src="popup.js"></script>
-  </body>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 280px;
+      font-family: 'Google Sans', Roboto, sans-serif;
+      background: #fff;
+      color: #333;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1a73e8, #0d47a1);
+      color: white;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-icon {
+      font-size: 28px;
+    }
+
+    .header-text h1 {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .header-text p {
+      font-size: 11px;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .grade-legend {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .grade-legend h2 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .grade-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .grade-chip {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      border: 2px solid;
+      flex-shrink: 0;
+    }
+
+    .chip-A { background: #e8f5e9; color: #2e7d32; border-color: #2e7d32; }
+    .chip-B { background: #fff8e1; color: #f57f17; border-color: #f57f17; }
+    .chip-C { background: #fbe9e7; color: #bf360c; border-color: #bf360c; }
+    .chip-P { background: #e3f2fd; color: #1565c0; border-color: #1565c0; }
+
+    .grade-desc {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .grade-desc strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .grade-desc span {
+      color: #777;
+      font-size: 11px;
+    }
+
+    .footer {
+      padding: 10px 16px;
+      font-size: 11px;
+      color: #aaa;
+      text-align: center;
+      background: #fafafa;
+    }
+
+    .footer a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+
+    .status {
+      padding: 10px 16px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f1f8ff;
+      border-bottom: 1px solid #e0eeff;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34a853;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-icon">🏥</div>
+    <div class="header-text">
+      <h1>NYC Health Inspector</h1>
+      <p>DOHMH grades on Google Maps</p>
+    </div>
+  </div>
+
+  <div class="status">
+    <div class="dot"></div>
+    <span>Active on Google Maps — open any NYC restaurant</span>
+  </div>
+
+  <div class="grade-legend">
+    <h2>Grade Guide</h2>
+
+    <div class="grade-row">
+      <div class="grade-chip chip-A">A</div>
+      <div class="grade-desc">
+        <strong>Grade A</strong>
+        <span>Score 0–13. Excellent sanitary conditions.</span>
+      </div>
+    </div>
+
+    <div class="grade-row">
+      <div class="grade-chip chip-B">B</div>
+      <div class="grade-desc">
+        <strong>Grade B</strong>
+        <span>Score 14–27. Some violations found.</span>
+      </div>
+    </div>
+
+    <div class="grade-row">
+      <div class="grade-chip chip-C">C</div>
+      <div class="grade-desc">
+        <strong>Grade C</strong>
+        <span>Score 28+. Significant violations.</span>
+      </div>
+    </div>
+
+    <div class="grade-row">
+      <div class="grade-chip chip-P">P</div>
+      <div class="grade-desc">
+        <strong>Grade Pending</strong>
+        <span>Inspected but grade not yet issued.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Data from <a href="https://data.cityofnewyork.us" target="_blank">NYC Open Data</a> · DOHMH
+  </div>
+
+</body>
 </html>
