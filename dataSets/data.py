@@ -3,7 +3,7 @@ from sodapy import Socrata
 
 # 1. Connect to the NYC Open Data domain
 # No app_token is required for public data, but it's recommended for higher rate limits
-client = Socrata("data.cityofnewyork.us", None)
+# client = Socrata("data.cityofnewyork.us", None)
 
 # 2. Fetch the data
 # Results are returned as a list of dictionaries
@@ -21,8 +21,9 @@ def _soql_string(value: str) -> str:
     return str(value).replace("'", "''")
 
 
-def get_data(record_id: str, client: Socrata):
+def get_data(record_id: str):
     """Fetch rows where `dba` matches `record_id` (Liquor Authority dataset)."""
+    client = Socrata("data.cityofnewyork.us", None)
     # SoQL: string literals use single quotes; column name from API is typically lowercase `dba`
     where = f"dba = '{_soql_string(record_id)}'"
     results = client.get(
@@ -30,13 +31,17 @@ def get_data(record_id: str, client: Socrata):
         limit=1,
         where=where,
     )
+    # API returns [] when no rows match, not None
+    if not results:
+        return None
+
     results_frame = pd.DataFrame.from_records(results)
-    grade = results_frame["grade"]
-    print(grade)
-    # return results
+    if "grade" not in results_frame.columns:
+        return None
+    return str(results_frame["grade"].iloc[0])
 
 
 if __name__ == "__main__":
-    get_data("POLANCO RESTAURANT BBQ", client)
+    print(get_data("POLANCO RESTAURANT BBQ"))
     
     
