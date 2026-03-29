@@ -6,9 +6,31 @@
  *
  * Injection is idempotent: we skip DOM updates when the resolved place key and grade
  * match what is already shown, so zoom-driven layout mutations do not rerender the badge.
+ *
+ * Place type (e.g. "Cantonese restaurant") appears on a `button.DkEaL` within the card;
+ * we only show the inspection badge when that label indicates a restaurant or bar.
  */
 const TARGET_CLASS = "lMbq3e";
+const TYPE_BUTTON_CLASS = "DkEaL";
 const BADGE_CLASS = "mhc-maps-inject";
+
+/** Walk up from the title node to ancestors whose subtree contains the type button. */
+function findPlaceTypeText(titleEl) {
+  let el = titleEl.parentElement;
+  while (el) {
+    const btn = el.querySelector(`button.${TYPE_BUTTON_CLASS}`);
+    if (btn) return (btn.textContent || "").trim();
+    el = el.parentElement;
+  }
+  return "";
+}
+
+function isRestaurantOrBarType(description) {
+  const d = description.toLowerCase();
+  if (d.includes("restaurant")) return true;
+  // Word "bar" (wine bar, sports bar) — avoid substring matches like "barbecue" / "barber"
+  return /\bbar\b/.test(d);
+}
 
 function normalizePlaceKey(raw) {
   return raw
@@ -79,6 +101,13 @@ function injectIntoListing(node) {
 
   const placeKey = getPlaceKey(node);
   if (!placeKey) return;
+
+  const typeText = findPlaceTypeText(node);
+  if (!typeText) return;
+  if (!isRestaurantOrBarType(typeText)) {
+    node.querySelector(`:scope > .${BADGE_CLASS}`)?.remove();
+    return;
+  }
 
   const grade = getInspectionGrade(placeKey);
 
