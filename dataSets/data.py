@@ -41,7 +41,7 @@ def get_data(record_id: str):
     return str(results_frame["grade"].iloc[0])
 
 
-if __name__ == "__main__":
-    print(get_data("POLANCO RESTAURANT BBQ"))
+# if __name__ == "__main__":
+#     print(get_data("POLANCO RESTAURANT BBQ"))
     
     
